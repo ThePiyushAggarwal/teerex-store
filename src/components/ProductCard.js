@@ -10,7 +10,7 @@ function ProductCard({ product }) {
       {product.name}
       <button
         className='border-2 border-sky-500 rounded-full px-3'
-        onClick={() => dispatch(addToCart({ id: product.id }))}
+        onClick={() => dispatch(addToCart({ ...product }))}
       >
         Add to Cart
       </button>

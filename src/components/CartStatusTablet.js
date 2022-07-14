@@ -6,13 +6,13 @@ function CartStatusTablet({ product }) {
   const { cart } = useSelector((state) => state.products)
 
   const cartValueForThis =
-    cart?.find((item) => item.id === product.id)?.quantity || 0
+    cart?.find((item) => item.id === product.id)?.cartValue || 0
 
   const onChange = (e) => {
-    const productQuantity =
+    const cartValue =
       e.target.value >= product.quantity ? product.quantity : e.target.value
 
-    dispatch(addToCart({ id: product.id, quantity: productQuantity }))
+    dispatch(addToCart({ ...product, cartValue }))
   }
 
   return (

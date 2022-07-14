@@ -33,14 +33,14 @@ export const productSlice = createSlice({
           if (product.id === payload.id) {
             return {
               ...product,
-              quantity: payload.quantity || product.quantity + 1,
+              cartValue: payload.cartValue || product.cartValue + 1,
             }
           } else {
             return product
           }
         })
       } else {
-        state.cart.push({ ...payload, quantity: 1 })
+        state.cart.push({ ...payload, cartValue: 1 })
       }
     },
   },

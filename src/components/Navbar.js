@@ -4,7 +4,7 @@ function Navbar() {
   const { cart } = useSelector((state) => state.products)
 
   const totalCartValue = cart?.reduce((sum, order) => {
-    return sum + order.quantity
+    return sum + order.cartValue
   }, 0)
 
   return (
