@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { getProducts, addToCart } from '../features/products/productSlice'
+import { getProducts } from '../features/products/productSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import ProductCard from '../components/ProductCard'
 
@@ -24,11 +24,7 @@ function ProductDetails() {
       <div>Products</div>
       <div className='h-full flex flex-wrap justify-around'>
         {products?.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            addToCart={addToCart}
-          />
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </div>

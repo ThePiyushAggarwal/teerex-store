@@ -23,8 +23,25 @@ export const productSlice = createSlice({
     loading: false,
   },
   reducers: {
+    // This function first checks if the cart already has the product
+    // If product exists, sets the quantity if given
+    // If not given, adds 1 to the present quanitity
+    // If product doesn't exist, it sets quantity to 1 and adds it to cart array
     addToCart: (state, { payload }) => {
-      state.cart.push(payload)
+      if (state.cart.some((product) => product.id === payload.id)) {
+        state.cart = state.cart.map((product) => {
+          if (product.id === payload.id) {
+            return {
+              ...product,
+              quantity: payload.quantity || product.quantity + 1,
+            }
+          } else {
+            return product
+          }
+        })
+      } else {
+        state.cart.push({ ...payload, quantity: 1 })
+      }
     },
   },
   extraReducers: (builder) => {
@@ -44,6 +61,6 @@ export const productSlice = createSlice({
   },
 })
 
-export const { addToCart } = productSlice.actions
+export const { addToCart, removeThisFromCart } = productSlice.actions
 
 export default productSlice.reducer
