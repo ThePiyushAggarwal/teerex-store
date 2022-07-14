@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
-import { getProducts } from '../features/products/productSlice'
+import { getProducts, addToCart } from '../features/products/productSlice'
 import { useSelector, useDispatch } from 'react-redux'
+import ProductCard from '../components/ProductCard'
 
 function ProductDetails() {
   const dispatch = useDispatch()
@@ -19,11 +20,17 @@ function ProductDetails() {
   }
 
   return (
-    <div>
-      ProductDetails
-      {products?.map((x) => (
-        <p key={x.id}>{x.name}</p>
-      ))}
+    <div className='h-full'>
+      <div>Products</div>
+      <div className='h-full flex flex-wrap justify-around'>
+        {products?.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            addToCart={addToCart}
+          />
+        ))}
+      </div>
     </div>
   )
 }

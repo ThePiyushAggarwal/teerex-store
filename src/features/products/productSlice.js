@@ -18,10 +18,15 @@ export const productSlice = createSlice({
   name: 'products',
   initialState: {
     products: [],
+    cart: [],
     error: false,
     loading: false,
   },
-  reducers: {},
+  reducers: {
+    addToCart: (state, { payload }) => {
+      state.cart.push(payload)
+    },
+  },
   extraReducers: (builder) => {
     // builder.addCase(getProducts.pending)
     builder
@@ -38,5 +43,7 @@ export const productSlice = createSlice({
       })
   },
 })
+
+export const { addToCart } = productSlice.actions
 
 export default productSlice.reducer
