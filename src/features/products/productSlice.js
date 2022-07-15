@@ -39,7 +39,7 @@ export const productSlice = createSlice({
           }
         })
       } else {
-        state.cart.push({ ...payload, cartValue: 1 })
+        state.cart.push({ ...payload, cartValue: payload.quantity !== 0 && 1 })
       }
     },
     removeFromCart: (state, { payload }) => {
